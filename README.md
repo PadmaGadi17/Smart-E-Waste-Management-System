@@ -10,35 +10,54 @@ This project aims to promote responsible e-waste disposal and contribute to envi
 🚀 Features
 
 👤 User Module
+
 User registration and login
+
 Schedule e-waste pickup (time-slot booking)
+
 View pickup status
+
 Receive email notifications
 
 🛠️ Admin Module
+
 Manage user requests
+
 Update pickup status
+
 Monitor system activities
 
 📦 Core Functionalities
+
 Pickup scheduling system
+
 Email notification system
+
 Secure authentication
+
 Database integration
 
 🏗️ Tech Stack
+
 💻 Backend
-Java
-Spring Boot
+Java ,
+Spring Boot,
 REST APIs
+
 🌐 Frontend
-React.js
-HTML
-CSS
+React.js ,
+HTML,
+CSS,
 JavaScript
+
 🗄️ Database
-MySQL / PostgreSQL
+
+MySQL 
+
 ⚙️ Tools & Technologies
+
 Git & GitHub
+
 Maven
+
 IntelliJ IDEA
