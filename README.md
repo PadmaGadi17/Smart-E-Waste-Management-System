@@ -1,63 +1,74 @@
-♻️ Smart E-Waste Management System
+♻️ Smart E-Waste Collection and Management System (Backend)
 
-📌 Project Overview
+## 📌 Overview
 
-The Smart E-Waste Management System is a web-based application designed to efficiently manage electronic waste collection and disposal. It enables users to schedule pickups, track requests, and receive notifications, while administrators can manage and monitor the entire system.
+This repository contains the **backend implementation** of a Smart E-Waste Management System developed during an internship project.
 
-This project aims to promote responsible e-waste disposal and contribute to environmental sustainability.
-.
+The system allows users to create e-waste pickup requests and enables administrators to manage scheduling, assign collectors, and track request status efficiently.
 
-🚀 Features
+⚠️ Note: The frontend (UI) was developed separately by another team and is not included in this repository.
 
-👤 User Module
+---
 
-User registration and login
+## 🚀 Features
 
-Schedule e-waste pickup (time-slot booking)
+* User registration & login
+* JWT-based authentication
+* Role-based access control (User, Admin, Collector)
+* E-waste pickup request creation & tracking
+* Admin request management & scheduling
+* Email notifications integration
+* Image upload support
 
-View pickup status
+---
 
-Receive email notifications
+## 🏗️ Tech Stack
 
-🛠️ Admin Module
+* Java
+* Spring Boot
+* REST APIs
+* MySQL
+* Spring Security (JWT)
 
-Manage user requests
+---
 
-Update pickup status
+## ⚙️ Setup & Run
 
-Monitor system activities
+### 1. Clone the repository
 
-📦 Core Functionalities
+```bash
+git clone https://github.com/your-username/Smart-E-Waste-Management-System.git
+cd Smart-E-Waste-Management-System
+```
 
-Pickup scheduling system
+### 2. Configure Database
 
-Email notification system
+* Create a MySQL database
+* Update `application.properties` with your DB credentials
 
-Secure authentication
+### 3. Run the application
 
-Database integration
+```bash
+mvn spring-boot:run
+```
 
-🏗️ Tech Stack
+---
 
-💻 Backend
-Java ,
-Spring Boot,
-REST APIs
+## 🔗 API Testing
 
-🌐 Frontend
-React.js ,
-HTML,
-CSS,
-JavaScript
+You can test APIs using:
 
-🗄️ Database
+* Postman
 
-MySQL 
+---
 
-⚙️ Tools & Technologies
+## 👩‍💻 Author
 
-Git & GitHub
+**Padma Gadi**
+ECE Student | Aspiring Java Full Stack Developer
 
-Maven
+---
 
-IntelliJ IDEA
+## ⭐ Note
+
+This project focuses on backend development and demonstrates REST API design, authentication, and real-world problem solving.
