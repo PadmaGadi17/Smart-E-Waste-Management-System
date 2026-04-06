@@ -37,7 +37,7 @@ The system allows users to create e-waste pickup requests and enables administra
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/Smart-E-Waste-Management-System.git
+git clone https://github.com/PadmaGadi17/Smart-E-Waste-Management-System.git
 cd Smart-E-Waste-Management-System
 ```
 
@@ -65,7 +65,6 @@ You can test APIs using:
 ## 👩‍💻 Author
 
 **Padma Gadi**
-Aspiring Java Full Stack Developer
 
 ---
 
