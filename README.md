@@ -65,7 +65,7 @@ You can test APIs using:
 ## 👩‍💻 Author
 
 **Padma Gadi**
-ECE Student | Aspiring Java Full Stack Developer
+Aspiring Java Full Stack Developer
 
 ---
 
