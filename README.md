@@ -65,6 +65,7 @@ You can test APIs using:
 ## 👩‍💻 Author
 
 **Padma Gadi**
+🔗 LinkedIn: https://www.linkedin.com/in/padma-gadi
 
 ---
 
