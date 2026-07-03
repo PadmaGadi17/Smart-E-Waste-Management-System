@@ -2,36 +2,71 @@
 
 ## 📌 Overview
 
-This repository contains the **backend implementation** of a Smart E-Waste Management System developed during an internship project.
+The **Smart E-Waste Management System** is a Spring Boot backend application developed as part of the **Infosys Springboard 6.0 Internship**.
 
-The system allows users to create e-waste pickup requests and enables administrators to manage scheduling, assign collectors, and track request status efficiently.
+The system digitizes the complete e-waste pickup process by allowing users to submit pickup requests, administrators to manage assignments and scheduling, and collectors to update pickup status.
 
-⚠️ Note: The frontend (UI) was developed separately by another team and is not included in this repository.
+The project demonstrates secure backend development using **Spring Boot, Spring Security, JWT Authentication, REST APIs, and MySQL**.
+
+⚠️ **Note**: The frontend (UI) was developed separately by another team and is not included in this repository.
 
 ---
 
 ## 🚀 Features
 
-* User registration & login
-* JWT-based authentication
-* Role-based access control (User, Admin, Collector)
-* E-waste pickup request creation & tracking
-* Admin request management & scheduling
-* Email notifications integration
-* Image upload support
+- JWT Authentication & Spring Security
+- Role-Based Access Control (User, Admin, Collector)
+- User Registration & Login
+- E-Waste Pickup Request Management
+- Collector Assignment & Pickup Scheduling
+- Request Status Tracking
+- Email Notifications using JavaMail (Mailtrap)
+- Image Upload using MultipartFile
+- Request History (Audit Trail)
+- Analytics APIs
+- REST API Testing with Postman
 
 ---
 
 ## 🏗️ Tech Stack
 
-* Java
-* Spring Boot
-* REST APIs
-* MySQL
-* Spring Security (JWT)
+- Java
+- Spring Boot
+- Spring Security
+- JWT Authentication
+- Spring Data JPA (Hibernate)
+- MySQL
+- Maven
+- JavaMail
+- Postman
+- Git & GitHub
 
 ---
+## 🗄 Database
 
+The application uses **5 relational tables**:
+
+- Users
+- Ewaste Requests
+- Collector Assignments
+- Pickup Schedule
+- Request Status History
+
+---
+## 🔗 REST APIs
+
+Implemented **18 REST APIs** covering:
+
+- Authentication (Register & Login)
+- User Operations
+- Admin Operations
+- Collector Operations
+- Pickup Scheduling
+- Status Updates
+- Analytics
+- Request Tracking
+
+---
 ## ⚙️ Setup & Run
 
 ### 1. Clone the repository
@@ -52,13 +87,41 @@ cd Smart-E-Waste-Management-System
 mvn spring-boot:run
 ```
 
+Server runs at:
+
+```
+http://localhost:8080
+```
+
+---
+## 🧪 API Testing
+
+The APIs were tested using:
+
+- Postman
+- MySQL Workbench
+
+Verified:
+
+- Authentication
+- CRUD Operations
+- Role-Based Authorization
+- Email Notifications
+- Database Integrity
+
 ---
 
-## 🔗 API Testing
+## 📚 Learning Outcomes
 
-You can test APIs using:
-
-* Postman
+- Spring Boot REST API Development
+- JWT Authentication
+- Spring Security
+- Spring Data JPA
+- MySQL Database Design
+- JavaMail Integration
+- File Upload Handling
+- Git & GitHub
+- API Testing using Postman
 
 ---
 
@@ -70,5 +133,7 @@ You can test APIs using:
 ---
 
 ## ⭐ Note
+## 📌 Internship
 
-This project focuses on backend development and demonstrates REST API design, authentication, and real-world problem solving.
+Developed as part of the **Infosys Springboard 6.0 Internship**, demonstrating secure REST API development, role-based access control, database management, and real-world backend application development.
+## ⭐ If you found this project helpful, please consider giving it a Star.
