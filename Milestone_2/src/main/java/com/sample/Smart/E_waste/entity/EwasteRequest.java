@@ -7,7 +7,9 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "ewaste_requests")
 public class EwasteRequest {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String customerName;
@@ -17,43 +19,44 @@ public class EwasteRequest {
     @Column(length = 500)
     private String description;
 
-    // PENDING / SCHEDULED / APPROVED / PICKED / COMPLETED / REJECTED
-    private String status;
+    private String status; // PENDING/ASSIGNED/SCHEDULED/PICKED/COMPLETED/REJECTED
 
-    // optional file path
     private String imagePath;
-
     private LocalDate preferredDate;
-    private String preferredSlot; // MORNING/AFTERNOON/EVENING
+    private String preferredSlot;
 
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDateTime createdAt;
 
     @ManyToOne
     private User user;
 
-    public EwasteRequest(){}
+    @PrePersist
+    public void prePersist() {
+        this.createdAt = LocalDateTime.now(); // ✅ set at actual save time
+    }
 
-    // getters/setters
-    public Long getId(){ return id; }
-    public void setId(Long id){ this.id = id; }
-    public String getCustomerName(){ return customerName; }
-    public void setCustomerName(String customerName){ this.customerName = customerName; }
-    public String getDeviceType(){ return deviceType; }
-    public void setDeviceType(String deviceType){ this.deviceType = deviceType; }
-    public String getPickupAddress(){ return pickupAddress; }
-    public void setPickupAddress(String pickupAddress){ this.pickupAddress = pickupAddress; }
-    public String getDescription(){ return description; }
-    public void setDescription(String description){ this.description = description; }
-    public String getStatus(){ return status; }
-    public void setStatus(String status){ this.status = status; }
-    public String getImagePath(){ return imagePath; }
-    public void setImagePath(String imagePath){ this.imagePath = imagePath; }
-    public LocalDate getPreferredDate(){ return preferredDate; }
-    public void setPreferredDate(LocalDate preferredDate){ this.preferredDate = preferredDate; }
-    public String getPreferredSlot(){ return preferredSlot; }
-    public void setPreferredSlot(String preferredSlot){ this.preferredSlot = preferredSlot; }
-    public LocalDateTime getCreatedAt(){ return createdAt; }
-    public void setCreatedAt(LocalDateTime createdAt){ this.createdAt = createdAt; }
-    public User getUser(){ return user; }
-    public void setUser(User user){ this.user = user; }
+    public EwasteRequest() {}
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    public String getCustomerName() { return customerName; }
+    public void setCustomerName(String v) { this.customerName = v; }
+    public String getDeviceType() { return deviceType; }
+    public void setDeviceType(String v) { this.deviceType = v; }
+    public String getPickupAddress() { return pickupAddress; }
+    public void setPickupAddress(String v) { this.pickupAddress = v; }
+    public String getDescription() { return description; }
+    public void setDescription(String v) { this.description = v; }
+    public String getStatus() { return status; }
+    public void setStatus(String v) { this.status = v; }
+    public String getImagePath() { return imagePath; }
+    public void setImagePath(String v) { this.imagePath = v; }
+    public LocalDate getPreferredDate() { return preferredDate; }
+    public void setPreferredDate(LocalDate v) { this.preferredDate = v; }
+    public String getPreferredSlot() { return preferredSlot; }
+    public void setPreferredSlot(String v) { this.preferredSlot = v; }
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime v) { this.createdAt = v; }
+    public User getUser() { return user; }
+    public void setUser(User v) { this.user = v; }
 }

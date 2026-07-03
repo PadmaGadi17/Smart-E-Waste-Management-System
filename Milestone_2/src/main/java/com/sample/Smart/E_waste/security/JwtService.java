@@ -4,6 +4,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -19,30 +20,34 @@ public class JwtService {
     @Value("${app.jwt.exp-min}")
     private long expMinutes;
 
-    private Key key(){
-        return Keys.hmacShaKeyFor(Decoders.BASE64.decode(java.util.Base64.getEncoder().encodeToString(secret.getBytes())));
+    private Key signingKey;
+
+    @PostConstruct
+    public void init() {
+        // ✅ built once, reused — no double encoding
+        this.signingKey = Keys.hmacShaKeyFor(Decoders.BASE64.decode(secret));
     }
 
-    public String generate(String subject, String role){
+    public String generate(String subject, String role) {
         long now = System.currentTimeMillis();
         return Jwts.builder()
                 .setSubject(subject)
                 .claim("role", role)
                 .setIssuedAt(new Date(now))
-                .setExpiration(new Date(now + expMinutes*60_000))
-                .signWith(key(), SignatureAlgorithm.HS256)
+                .setExpiration(new Date(now + expMinutes * 60_000))
+                .signWith(signingKey, SignatureAlgorithm.HS256)
                 .compact();
     }
 
-    public String subject(String token){
-        return Jwts.parserBuilder().setSigningKey(key()).build()
+    public String subject(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(signingKey).build()
                 .parseClaimsJws(token).getBody().getSubject();
     }
 
-    public String role(String token){
-        return (String) Jwts.parserBuilder().setSigningKey(key()).build()
+    public String role(String token) {
+        return (String) Jwts.parserBuilder()
+                .setSigningKey(signingKey).build()
                 .parseClaimsJws(token).getBody().get("role");
     }
 }
-
-

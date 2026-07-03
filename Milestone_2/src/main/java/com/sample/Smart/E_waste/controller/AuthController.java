@@ -22,30 +22,25 @@ public class AuthController {
     @PostMapping("/register")
     public Map<String, String> register(@RequestBody User user) {
         String token = users.register(user);
-        return Map.of(
-                "token", token,
-                "role", user.getRole()
-        );
+        return Map.of("token", token, "role", user.getRole());
     }
 
+    // ✅ changed to @RequestBody for security
     @PostMapping("/login")
-    public Map<String, String> login(
-            @RequestParam("identifier") String identifier,
-            @RequestParam("password") String password
-    ) {
-        User u = users.byEmail(identifier)
-                .orElseGet(() ->
-                        users.byPhone(identifier)
-                                .orElseThrow(() -> new RuntimeException("User not found"))
-                );
+    public Map<String, String> login(@RequestBody Map<String, String> body) {
+        String identifier = body.get("identifier");
+        String password   = body.get("password");
 
-        if (!users.matches(password, u.getPassword())) {
+        User u = users.byEmail(identifier)
+                .orElseGet(() -> users.byPhone(identifier)
+                        .orElseThrow(() -> new RuntimeException("User not found")));
+
+        if (!users.matches(password, u.getPassword()))
             throw new RuntimeException("Bad credentials");
-        }
 
         return Map.of(
                 "token", jwt.generate(u.getEmail(), u.getRole()),
-                "role", u.getRole()
+                "role",  u.getRole()
         );
     }
 }
