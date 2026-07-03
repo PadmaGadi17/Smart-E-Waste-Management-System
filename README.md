@@ -133,6 +133,8 @@ Verified:
 ---
 
 ## ⭐ Note
+This project focuses on backend development and demonstrates REST API design, authentication, and real-world problem solving.
+
 ## 📌 Internship
 
 Developed as part of the **Infosys Springboard 6.0 Internship**, demonstrating secure REST API development, role-based access control, database management, and real-world backend application development.
