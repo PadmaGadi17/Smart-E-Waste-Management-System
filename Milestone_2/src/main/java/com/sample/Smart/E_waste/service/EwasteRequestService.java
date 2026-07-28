@@ -129,6 +129,12 @@ public class EwasteRequestService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
         return reqRepo.findByUser(user);
     }
+    public List<EwasteRequest> getRequestsByStatus(String status) {
+        if (status == null || status.isEmpty() || status.equals("ALL")) {
+            return reqRepo.findAll();
+        }
+        return reqRepo.findByStatus(status);
+    }
 }
 
 

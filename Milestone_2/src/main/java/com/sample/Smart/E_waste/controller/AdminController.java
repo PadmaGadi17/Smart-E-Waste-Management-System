@@ -2,6 +2,8 @@ package com.sample.Smart.E_waste.controller;
 
 import com.sample.Smart.E_waste.dto.AssignCollectorRequest;
 import com.sample.Smart.E_waste.entity.EwasteRequest;
+import com.sample.Smart.E_waste.entity.User;
+import com.sample.Smart.E_waste.repository.UserRepository;
 import com.sample.Smart.E_waste.service.AnalyticsService;
 import com.sample.Smart.E_waste.service.EmailService;
 import com.sample.Smart.E_waste.service.EwasteRequestService;
@@ -17,16 +19,18 @@ public class AdminController {
     private final EwasteRequestService service;
     private final EmailService emailService;
     private final AnalyticsService analyticsService;
+    private final UserRepository userRepository; // ✅ NEW
 
-    // ✅ Inject AnalyticsService properly
     public AdminController(
             EwasteRequestService service,
             EmailService emailService,
-            AnalyticsService analyticsService
+            AnalyticsService analyticsService,
+            UserRepository userRepository // ✅ NEW
     ) {
         this.service = service;
         this.emailService = emailService;
         this.analyticsService = analyticsService;
+        this.userRepository = userRepository; // ✅ NEW
     }
 
     // 1️⃣ ADMIN – VIEW ALL REQUESTS
@@ -62,13 +66,47 @@ public class AdminController {
         );
     }
 
-    // 4️⃣ ADMIN – ANALYTICS ✅
+    // 4️⃣ ADMIN – ANALYTICS
     @GetMapping("/analytics")
     public Map<String, Object> analytics() {
         return analyticsService.getAdminAnalytics();
     }
-}
 
+    // 5️⃣ ADMIN – VIEW ALL USERS ✅ NEW
+    @GetMapping("/users")
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    // 6️⃣ ADMIN – CHANGE USER ROLE ✅ NEW
+    @PutMapping("/users/{userId}/role")
+    public String changeRole(
+            @PathVariable("userId") Long userId,
+            @RequestParam("role") String role
+    ) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        user.setRole(role);
+        userRepository.save(user);
+        return "Role updated to " + role;
+    }
+
+    // 7️⃣ ADMIN – DELETE USER ✅ NEW
+    @DeleteMapping("/users/{userId}")
+    public String deleteUser(
+            @PathVariable("userId") Long userId
+    ) {
+        userRepository.deleteById(userId);
+        return "User deleted successfully";
+    }
+    // 8️⃣ ADMIN – FILTER REQUESTS BY STATUS
+    @GetMapping("/requests/filter")
+    public List<EwasteRequest> filterRequests(
+            @RequestParam(value = "status", required = false) String status
+    ) {
+        return service.getRequestsByStatus(status);
+    }
+}
 
 
 

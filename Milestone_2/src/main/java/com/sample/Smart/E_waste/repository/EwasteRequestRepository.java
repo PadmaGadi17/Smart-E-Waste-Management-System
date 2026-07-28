@@ -10,6 +10,7 @@ public interface EwasteRequestRepository extends JpaRepository<EwasteRequest, Lo
     List<EwasteRequest> findByUser(User user);
     long countByStatus(String status);
     long countByDeviceType(String deviceType);
+    List<EwasteRequest> findByStatus(String status);
 }
 
 
